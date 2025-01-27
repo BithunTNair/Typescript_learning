@@ -121,4 +121,57 @@ function getStatus(orderId: string, status: keyof typeof StatusType) {
     console.log(orderId, StatusType[status]);
 
 };
-getStatus('123', 'COMPLETED')
+getStatus('123', 'COMPLETED');
+
+//utility types
+type Users = {
+    name: string;
+    age: number;
+};
+// let userDetails:Readonly<Users>={
+//     name:'Athira',
+//     age:25
+// }
+// let userDetails:Partial<Users>={
+//     name:'Athira',
+
+// }
+// let userDetails:Required<Users>={
+//     name:'Athira',
+//     age:25
+// }
+// let userDetails:Pick<Users,'name'>={
+//     name:'Athira',
+
+// }
+let userDetails: Omit<Users, 'age'> = {
+    name: 'Athira',
+
+};
+
+type StatusType = 'pending' | 'completed' | 'failed'
+let statuss: Exclude<StatusType, 'failed'> = 'completed';
+
+// type Food ={
+//     PIZZA:'pizza',
+//     BIRIYANI:'biriyani'
+// }
+type Food = Record<string, string>
+type Foods= {
+    [index:string]:string
+}
+let food: Food = {
+    pizza: 'Pizza',
+    biriyani: 'Biriyani'
+};
+
+//any/unknown/never/void/null
+let userName: unknown = 'Athira'
+let newValue = userName as string;
+function error(message: string): never {
+    throw new Error(message)
+};
+function errors(message: string): void {
+    console.log(message);
+
+}
